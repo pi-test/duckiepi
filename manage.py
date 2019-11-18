@@ -475,25 +475,6 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
     
 
     elif cfg.DRIVE_TRAIN_TYPE == "DC_TWO_WHEEL":
-        from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle, Adafruit_DCMotor_Hat
-        steering_controller = Adafruit_DCMotor_Hat()
-
-        steering = PWMSteering(controller=steering_controller,
-                               left_pulse=cfg.STEERING_LEFT_PWM,
-                               right_pulse=cfg.STEERING_RIGHT_PWM) 
-
-        #class Adafruit_DCMotor_Hat:
-        #throttle_controller = PCA9685(cfg.THROTTLE_CHANNEL)
-        throttle_controller = Adafruit_DCMotor_Hat()
-        throttle = PWMThrottle(controller=throttle_controller,
-                               max_pulse=cfg.THROTTLE_FORWARD_PWM,
-                               zero_pulse=cfg.THROTTLE_STOPPED_PWM,
-                               min_pulse=cfg.THROTTLE_REVERSE_PWM)
-
-        V.add(steering, inputs=['angle'])
-        V.add(throttle, inputs=['throttle'])
-
-        """
         from donkeycar.parts.actuator import TwoWheelSteeringThrottle, Mini_HBridge_DC_Motor_PWM
 
         left_motor = Mini_HBridge_DC_Motor_PWM(cfg.HBRIDGE_PIN_LEFT_FWD, cfg.HBRIDGE_PIN_LEFT_BWD)
@@ -506,7 +487,6 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
 
         V.add(left_motor, inputs=['left_motor_speed'])
         V.add(right_motor, inputs=['right_motor_speed'])
-        """
 
     elif cfg.DRIVE_TRAIN_TYPE == "SERVO_HBRIDGE_PWM":
         from donkeycar.parts.actuator import ServoBlaster, PWMSteering

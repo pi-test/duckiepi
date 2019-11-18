@@ -1,0 +1,6 @@
+python3 manage.py drive --model models/donkeypi4.h5 --type rnn
+
+donkey tubclean data
+
+
+
